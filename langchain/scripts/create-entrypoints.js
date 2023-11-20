@@ -119,6 +119,7 @@ const entrypoints = {
   "vectorstores/typeorm": "vectorstores/typeorm",
   "vectorstores/myscale": "vectorstores/myscale",
   "vectorstores/redis": "vectorstores/redis",
+  "vectorstores/rockset": "vectorstores/rockset",
   "vectorstores/typesense": "vectorstores/typesense",
   "vectorstores/singlestore": "vectorstores/singlestore",
   "vectorstores/tigris": "vectorstores/tigris",
@@ -248,6 +249,7 @@ const entrypoints = {
   "retrievers/self_query/pinecone": "retrievers/self_query/pinecone",
   "retrievers/self_query/supabase": "retrievers/self_query/supabase",
   "retrievers/self_query/weaviate": "retrievers/self_query/weaviate",
+  "retrievers/self_query/vectara": "retrievers/self_query/vectara",
   "retrievers/vespa": "retrievers/vespa",
   // cache
   cache: "cache/index",
@@ -255,6 +257,7 @@ const entrypoints = {
   "cache/momento": "cache/momento",
   "cache/redis": "cache/redis",
   "cache/ioredis": "cache/ioredis",
+  "cache/file_system": "cache/file_system",
   "cache/upstash_redis": "cache/upstash_redis",
   // stores
   "stores/doc/in_memory": "stores/doc/in_memory",
@@ -393,6 +396,7 @@ const requiresOptionalDependency = [
   "vectorstores/myscale",
   "vectorstores/neo4j_vector",
   "vectorstores/redis",
+  "vectorstores/rockset",
   "vectorstores/singlestore",
   "vectorstores/typesense",
   "vectorstores/tigris",
@@ -456,6 +460,7 @@ const requiresOptionalDependency = [
   "retrievers/self_query/pinecone",
   "retrievers/self_query/supabase",
   "retrievers/self_query/weaviate",
+  "retrievers/self_query/vectara",
   "output_parsers/expression",
   "chains/query_constructor",
   "chains/query_constructor/ir",
@@ -463,6 +468,7 @@ const requiresOptionalDependency = [
   "cache/momento",
   "cache/redis",
   "cache/ioredis",
+  "cache/file_system",
   "cache/upstash_redis",
   "stores/doc/gcs",
   "stores/file/node",
@@ -547,7 +553,7 @@ const updateConfig = () => {
     ...json,
     entryPoints: [...Object.keys(entrypoints)]
       .filter((key) => !deprecatedNodeOnly.includes(key))
-      .map((key) => `../../langchain/src/${entrypoints[key]}.ts`),
+      .map((key) => `./langchain/src/${entrypoints[key]}.ts`),
   }));
 
   const generatedFiles = generateFiles();
